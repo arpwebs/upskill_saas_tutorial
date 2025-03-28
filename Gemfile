@@ -27,8 +27,8 @@ group :development do
   gem 'sqlite3', '~> 2.0' # Updated for Rails 8
   gem 'web-console'
   gem 'listen', '~> 3.3'  # Updated for compatibility
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+#  gem 'spring'
+#  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :production do

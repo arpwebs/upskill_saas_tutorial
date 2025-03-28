@@ -202,10 +202,6 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.4.1)
-    spring (2.1.1)
-    spring-watcher-listen (2.0.1)
-      listen (>= 2.7, < 4.0)
-      spring (>= 1.2, < 3.0)
     sprockets (3.7.5)
       base64
       concurrent-ruby (~> 1.0)
@@ -254,8 +250,6 @@ DEPENDENCIES
   puma (~> 6.0)
   rails (~> 8.0.2)
   sassc-rails
-  spring
-  spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 2.0)
   stimulus-rails
   turbo-rails
