@@ -1,0 +1,874 @@
+// DevMatch Complete Stylesheet for Bootstrap 3
+// ------------------------------------------
+
+// Variables - defined at the top so they're available to all other styles
+$primary-color: #6C63FF;    // Modern indigo purple
+$secondary-color: #6c757d;  // Grey for secondary elements
+$accent-color: #00CFDD;     // Bright teal for accents and emphasis
+$dark-color: #2d3748;       // Dark blue-gray for text
+$light-color: #f8f9fa;      // Light gray for backgrounds
+$font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+// ------------------------------------------
+// GLOBAL STYLES
+// ------------------------------------------
+
+body {
+  font-family: $font-primary;
+  color: $dark-color;
+  min-height: 100vh;
+}
+
+a {
+  transition: color 0.3s ease;
+  
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.container {
+  @media (min-width: 1200px) {
+    width: 1170px;
+  }
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  
+  &:after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: $accent-color;
+    margin: 1rem auto;
+  }
+}
+
+// Custom Button Styles
+.btn {
+  transition: all 0.3s ease;
+  
+  &-custom-primary {
+    background-color: $primary-color;
+    border-color: $primary-color;
+    color: white;
+    
+    &:hover, &:focus {
+      background-color: darken($primary-color, 7%);
+      border-color: darken($primary-color, 7%);
+      color: white;
+    }
+  }
+  
+  &-custom-accent {
+    background-color: $accent-color;
+    border-color: $accent-color;
+    color: $dark-color;
+    
+    &:hover, &:focus {
+      background-color: darken($accent-color, 5%);
+      border-color: darken($accent-color, 5%);
+      color: $dark-color;
+    }
+  }
+  
+  &-outline {
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    background-color: transparent;
+    
+    &:hover, &:focus {
+      background-color: rgba($primary-color, 0.1);
+      color: $primary-color;
+    }
+  }
+}
+
+// ------------------------------------------
+// NAVBAR STYLES
+// ------------------------------------------
+// Navbar Toggle Visibility
+.navbar-toggle {
+  .icon-bar {
+    background-color: $dark-color; // Ensure high contrast
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+  }
+  
+  &:hover {
+    .icon-bar {
+      background-color: $primary-color; // Optional: change color on hover
+    }
+  }
+}
+
+// Responsive adjustments for navbar toggle
+@media (max-width: 767px) {
+  .navbar-custom .navbar-toggle {
+    margin-top: 15px;
+    margin-right: 15px;
+    border: none;
+    background-color: transparent;
+    
+    &:focus, &:active {
+      outline: none;
+      background-color: rgba($primary-color, 0.1);
+    }
+  }
+}
+.navbar-wrapper {
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1000;
+}
+
+.navbar-custom {
+  background-color: transparent;
+  border: none;
+  margin-bottom: 0;
+  
+  .navbar-brand {
+    height: auto;
+    padding: 20px 15px; /* Adjusted padding to align vertically */
+    
+    .brand-text {
+      color: $dark-color;
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      line-height: 1; /* Added to improve vertical alignment */
+    }
+    
+    &:hover {
+      .brand-text {
+        color: $primary-color;
+      }
+    }
+  }
+  
+  .navbar-nav {
+    > li {
+      margin: 0 5px;
+      
+      > a {
+        color: $dark-color;
+        font-weight: 500;
+        padding: 20px 15px;
+        transition: all 0.3s ease;
+        position: relative;
+        
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: 10px; /* Moved higher to be closer to text */
+          left: 15px;
+          right: 15px;
+          height: 3px;
+          background-color: $primary-color;
+          transform: scaleX(0);
+          transition: transform 0.3s ease;
+        }
+        
+        &:hover, &:focus {
+          color: $primary-color;
+          background-color: transparent;
+          
+          &:after {
+            transform: scaleX(1);
+          }
+        }
+      }
+      
+      &.active > a {
+        color: $primary-color;
+        background-color: transparent;
+        font-weight: 600;
+        
+        &:after {
+          transform: scaleX(1);
+        }
+        
+        &:hover, &:focus {
+          color: $primary-color;
+          background-color: transparent;
+        }
+      }
+    }
+  }
+  
+  .auth-buttons {
+    margin: 15px 0; /* Adjusted to align vertically with other elements */
+    display: flex;
+    align-items: center;
+    
+    .btn {
+      margin-left: 10px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+// Responsive adjustments for navbar
+@media (max-width: 767px) {
+  .navbar-custom {
+    .navbar-nav {
+      > li > a {
+        padding: 12px 15px;
+        
+        &:after {
+          display: none;
+        }
+      }
+    }
+    
+    .auth-buttons {
+      display: block;
+      text-align: left;
+      margin: 10px 15px 20px;
+      
+      .btn {
+        display: block;
+        margin: 10px 0;
+        text-align: center;
+      }
+    }
+  }
+}
+
+// ------------------------------------------
+// LANDING PAGE STYLES
+// ------------------------------------------
+
+.devmatch-landing {
+  section {
+    padding: 5rem 0;
+  }
+}
+
+// Hero Section
+.hero {
+  background: linear-gradient(135deg, $primary-color, darken($primary-color, 15%));
+  color: white;
+  padding: 6rem 0;
+  
+  h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .lead {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  
+  .hero-image {
+    text-align: center;
+    
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  
+  .cta-buttons {
+    .btn {
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+      padding: 10px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+    }
+    
+    .btn-primary {
+      background-color: $accent-color;
+      border-color: $accent-color;
+      color: $dark-color;
+      
+      &:hover, &:focus {
+        background-color: darken($accent-color, 5%);
+        border-color: darken($accent-color, 5%);
+      }
+    }
+    
+    .btn-default {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 2px solid white;
+      color: white;
+      
+      &:hover, &:focus {
+        background-color: white;
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+// Features Section
+.features {
+  background-color: $light-color;
+  
+  .feature-card {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+    height: 100%;
+    
+    &:hover {
+      transform: translateY(-10px);
+    }
+    
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: rgba($primary-color, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      
+      i {
+        font-size: 28px;
+        color: $primary-color;
+      }
+    }
+    
+    h3 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    
+    p {
+      color: $dark-color;
+      opacity: 0.8;
+      text-align: center;
+    }
+  }
+}
+
+// How It Works Section
+.how-it-works {
+  background-color: white;
+  
+  .step {
+    text-align: center;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+    
+    .step-number {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: $primary-color;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    h3 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    
+    p {
+      color: $dark-color;
+      opacity: 0.8;
+    }
+  }
+}
+
+// Testimonials Section
+.testimonials {
+  background: linear-gradient(135deg, $dark-color, darken($dark-color, 10%));
+  color: white;
+  
+  .section-title:after {
+    background-color: $accent-color;
+  }
+  
+  .testimonial {
+    background-color: rgba(white, 0.05);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    border-left: 4px solid $accent-color;
+    
+    .quote {
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      
+      &:before {
+        content: "\201C"; /* Unicode for opening double quote */
+        font-size: 3rem;
+        line-height: 0;
+        position: relative;
+        top: 0.5rem;
+        color: $accent-color;
+        margin-right: 0.25rem;
+      }
+    }
+    
+    .testimonial-author {
+      .name {
+        font-weight: bold;
+        margin-bottom: 0.2rem;
+      }
+      
+      .role {
+        opacity: 0.7;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+// Call To Action Section
+.cta {
+  background: linear-gradient(135deg, $primary-color, darken($primary-color, 15%));
+  color: white;
+  text-align: center;
+  
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  
+  .cta-buttons {
+    .btn {
+      margin: 0 0.5rem 1rem;
+      padding: 10px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+    }
+    
+    .btn-primary {
+      background-color: $accent-color;
+      border-color: $accent-color;
+      color: $dark-color;
+      
+      &:hover, &:focus {
+        background-color: darken($accent-color, 5%);
+        border-color: darken($accent-color, 5%);
+      }
+    }
+    
+    .btn-default {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 2px solid white;
+      color: white;
+      
+      &:hover, &:focus {
+        background-color: white;
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+// ------------------------------------------
+// ABOUT PAGE STYLES
+// ------------------------------------------
+
+// About Page Styles - Text Size Improvements
+.about-page {
+  section {
+    padding: 5rem 0;
+  }
+  
+  h2 {
+    position: relative;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    font-size: 2.5rem; /* Increased from default */
+    
+    &:after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 3px;
+      background-color: $accent-color;
+      margin-top: 1rem;
+    }
+  }
+  
+  .text-center h2:after {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  p {
+    font-size: 16px; /* Ensures all paragraph text is at least 16px */
+    line-height: 1.8;
+  }
+  
+  .subtitle {
+    font-size: 1.4rem !important; /* Force this to be larger */
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+}
+
+// About Hero Section
+.about-hero {
+  background-color: $primary-color;
+  color: white;
+  padding: 6rem 0;
+  
+  h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .lead {
+    font-size: 1.6rem;
+    opacity: 0.9;
+    font-weight: 300;
+  }
+}
+
+// Our Story Section
+.our-story {
+  background-color: white;
+  
+  .image-container {
+    text-align: center;
+    
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  
+  p {
+    font-size: 1.15rem !important;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+}
+
+// Our Mission Section
+.our-mission {
+  background-color: $light-color;
+  
+  .mission-statement {
+    font-size: 1.5rem !important;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: $dark-color;
+    opacity: 0.9;
+  }
+  
+  .mission-card {
+    background-color: white;
+    padding: 2.5rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    text-align: center;
+    transition: transform 0.3s ease;
+    margin-bottom: 30px;
+    
+    &:hover {
+      transform: translateY(-10px);
+    }
+    
+    .mission-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: rgba($primary-color, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      
+      i {
+        font-size: 28px;
+        color: $primary-color;
+      }
+    }
+    
+    h3 {
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+    }
+    
+    p {
+      color: $dark-color;
+      opacity: 0.8;
+      font-size: 1.05rem !important;
+    }
+  }
+}
+
+// Team Section
+.our-team {
+  .subtitle {
+    font-size: 1.4rem !important;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+  }
+  
+  .team-member {
+    h4 {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 1.4rem;
+    }
+    
+    .position {
+      color: $primary-color;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    
+    .bio {
+      font-size: 1.05rem !important;
+      opacity: 0.8;
+    }
+  }
+}
+
+// Why Choose Us Section
+.why-choose-us {
+  .subtitle {
+    font-size: 1.4rem !important;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+  }
+  
+  .feature-item {
+    .feature-content {
+      h3 {
+        margin-bottom: 0.75rem;
+        font-size: 1.4rem;
+      }
+      
+      p {
+        color: $dark-color;
+        opacity: 0.8;
+        line-height: 1.6;
+        font-size: 1.05rem !important;
+      }
+    }
+  }
+}
+
+// Contact CTA Section
+.contact-cta {
+  background-color: white;
+  
+  .lead {
+    font-size: 1.4rem !important;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+  }
+}
+
+// Stats Section
+.stats-section {
+  background: linear-gradient(135deg, $primary-color, darken($primary-color, 15%));
+  color: white;
+  padding: 4rem 0;
+  
+  .stat-item {
+    text-align: center;
+    margin-bottom: 2rem;
+    
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+
+
+// ------------------------------------------
+// FOOTER STYLES
+// ------------------------------------------
+
+.footer {
+  background-color: $dark-color;
+  color: white;
+  padding: 4rem 0 2rem;
+  margin-top: 0;
+  
+  h3.footer-logo-text {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  
+  .footer-tagline {
+    color: rgba(white, 0.7);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    color: white;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    
+    li {
+      margin-bottom: 0.7rem;
+      
+      a {
+        color: rgba(white, 0.7);
+        transition: color 0.2s ease;
+        
+        &:hover {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  
+  .footer-bottom {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(white, 0.1);
+    
+    p {
+      margin-bottom: 1rem;
+      color: rgba(white, 0.7);
+      font-size: 0.9rem;
+    }
+  }
+  
+  .social-links {
+    margin: 1rem 0;
+    
+    .social-link {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: rgba(white, 0.1);
+      color: white;
+      text-align: center;
+      line-height: 36px;
+      margin-right: 10px;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: $primary-color;
+        transform: translateY(-3px);
+      }
+    }
+  }
+}
+
+// ------------------------------------------
+// RESPONSIVE UTILITIES
+// ------------------------------------------
+
+@media (max-width: 991px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+  
+  .about-hero h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 767px) {
+  section {
+    padding: 3rem 0;
+  }
+  
+  .hero {
+    padding: 4rem 0;
+    
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    .lead {
+      font-size: 1.2rem;
+    }
+    
+    .hero-image {
+      margin-top: 2rem;
+    }
+  }
+  
+  .about-hero {
+    padding: 4rem 0;
+    
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .feature-item {
+    flex-direction: column;
+    
+    .feature-icon {
+      margin: 0 auto 1.5rem;
+    }
+    
+    .feature-content {
+      text-align: center;
+    }
+  }
+}

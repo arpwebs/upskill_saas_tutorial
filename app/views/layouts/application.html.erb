@@ -1,43 +1,132 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Saasapp</title>
+    <title><%= content_for?(:title) ? yield(:title) : "DevMatch - Connect with Top Tech Talent" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
-    <link rel="preconnect" href="//fonts.googleapis.com">
-    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
-    <link href="//fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+    <%= csp_meta_tag %>
 
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <nav class="navbar navbar-default navbar-static-top" role="navigation">
-      <div class='container'>
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-
-          <%= link_to "/", class: :"navbar-brand" do %>
-          <b>DevMatch</b>
-          <% end %>
-        </div>
-        <div class="collapse navbar-collapse" id="main-nav-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "About", "/about" %></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div>
-    </nav>
-    
-    
-    
+    <!-- Navbar (Bootstrap 3) -->
+  <div class="navbar-wrapper">
+  <nav class="navbar navbar-custom navbar-static-top">
     <div class="container">
-      <%= yield %>
+      <div class="navbar-header">
+        <!-- Hamburger Menu for Mobile -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- Logo/Brand -->
+        <a class="navbar-brand" href="/">
+          <span class="brand-text">DevMatch</span>
+        </a>
+      </div>
+      
+      <!-- Navbar Content -->
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="<%= current_page?(root_path) ? 'active' : '' %>">
+            <%= link_to "Home", root_path %>
+          </li>
+          <li class="<%= current_page?(about_path) ? 'active' : '' %>">
+            <%= link_to "About", about_path %>
+          </li>
+        </ul>
+        <div class="nav navbar-nav navbar-right auth-buttons">
+          <a href="#" class="btn btn-outline">Sign In</a>
+          <a href="#" class="btn btn-custom-primary">Sign Up</a>
+        </div>
+      </div>
     </div>
+  </nav>
+</div>
+
+    <!-- Flash Messages -->
+    <% if notice %>
+      <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= notice %>
+      </div>
+    <% end %>
+    
+    <% if alert %>
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <!-- Main Content -->
+    <main>
+      <%= yield %>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h3 class="footer-logo-text">DevMatch</h3>
+            <p class="footer-tagline">Connecting tech talent with opportunities</p>
+          </div>
+          
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-4">
+                <h4>Platform</h4>
+                <ul>
+                  <li><a href="#">Browse Jobs</a></li>
+                  <li><a href="#">Find Developers</a></li>
+                  <li><a href="#">How It Works</a></li>
+                  <li><a href="#">Pricing</a></li>
+                </ul>
+              </div>
+              
+              <div class="col-md-4">
+                <h4>Company</h4>
+                <ul>
+                  <li><%= link_to "About Us", about_path %></li>
+                  <li><a href="#">Blog</a></li>
+                  <li><a href="#">Careers</a></li>
+                  <li><a href="#">Contact</a></li>
+                </ul>
+              </div>
+              
+              <div class="col-md-4">
+                <h4>Legal</h4>
+                <ul>
+                  <li><a href="#">Terms of Service</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Cookie Policy</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>&copy; <%= Date.current.year %> DevMatch. All rights reserved.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 3 requires jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- If you're not using the asset pipeline for bootstrap-sprockets, include this -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
 </html>

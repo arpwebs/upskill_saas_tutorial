@@ -1,0 +1,132 @@
+/* line 3, app/assets/stylesheets/devmatch.scss */
+:root {
+  --primary-color: #3f51b5;
+  --secondary-color: #7986cb;
+  --accent-color: #ff5722;
+  --dark-bg: #1a1a2e;
+  --light-bg: #f5f8ff;
+  --text-color: #333;
+  --light-text: #ffffff;
+  --success-color: #4caf50;
+}
+
+/* line 14, app/assets/stylesheets/devmatch.scss */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* line 20, app/assets/stylesheets/devmatch.scss */
+body {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: #fcfcfc;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* line 32, app/assets/stylesheets/devmatch.scss */
+.btn {
+  padding: 0.6rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* line 42, app/assets/stylesheets/devmatch.scss */
+.btn-outline {
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  background: transparent;
+}
+
+/* line 48, app/assets/stylesheets/devmatch.scss */
+.btn-outline:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* line 53, app/assets/stylesheets/devmatch.scss */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+/* line 59, app/assets/stylesheets/devmatch.scss */
+.btn-primary:hover {
+  background-color: #303f9f;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(63, 81, 181, 0.3);
+}
+
+/* line 65, app/assets/stylesheets/devmatch.scss */
+.btn-accent {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+}
+
+/* line 71, app/assets/stylesheets/devmatch.scss */
+.btn-accent:hover {
+  background-color: #e64a19;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 87, 34, 0.3);
+}
+
+/* line 79, app/assets/stylesheets/devmatch.scss */
+.navbar {
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* line 88, app/assets/stylesheets/devmatch.scss */
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* line 96, app/assets/stylesheets/devmatch.scss */
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #3f51b5;
+  text-decoration: none;
+}
+
+/* line 103, app/assets/stylesheets/devmatch.scss */
+.logo span {
+  color: #ff5722;
+}
+
+/* line 107, app/assets/stylesheets/devmatch.scss */
+.nav-links a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+/* line 114, app/assets/stylesheets/devmatch.scss */
+.nav-links a:hover {
+  color: #3f51b5;
+}
+
+/* line 118, app/assets/stylesheets/devmatch.scss */
+.main-content {
+  padding-top: 2rem;
+}
