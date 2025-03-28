@@ -40,6 +40,10 @@
           <li class="<%= current_page?(about_path) ? 'active' : '' %>">
             <%= link_to "About", about_path %>
           </li>
+          <li class="<%= current_page?(new_contact_path) ? 'active' : '' %>">
+            <%= link_to "Contact Us", new_contact_path %>
+          </li>
+          
         </ul>
         <div class="nav navbar-nav navbar-right auth-buttons">
           <a href="#" class="btn btn-outline">Sign In</a>
