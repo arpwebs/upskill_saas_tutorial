@@ -1,4 +1,4 @@
-// DevMatch Complete Stylesheet for Bootstrap 3
+// DevMatch Optimized Stylesheet for Bootstrap 3
 // ------------------------------------------
 
 // Variables - defined at the top so they're available to all other styles
@@ -9,6 +9,35 @@ $dark-color: #2d3748;       // Dark blue-gray for text
 $light-color: #f8f9fa;      // Light gray for backgrounds
 $font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
+// Common mixins to reduce redundancy
+@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
+  transition: $property $duration $timing;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin circle($size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+}
+
+@mixin icon-circle($size, $bg-color, $icon-size) {
+  @include circle($size);
+  @include flex-center;
+  background-color: $bg-color;
+  margin: 0 auto 1.5rem;
+  
+  i {
+    font-size: $icon-size;
+    color: $primary-color;
+  }
+}
+
 // ------------------------------------------
 // GLOBAL STYLES
 // ------------------------------------------
@@ -17,10 +46,11 @@ body {
   font-family: $font-primary;
   color: $dark-color;
   min-height: 100vh;
+  padding-top: 70px; // Account for fixed navbar
 }
 
 a {
-  transition: color 0.3s ease;
+  @include transition(color);
   
   &:hover {
     text-decoration: none;
@@ -42,6 +72,7 @@ p {
   line-height: 1.6;
 }
 
+// Section styles used across the site
 .section-title {
   text-align: center;
   margin-bottom: 3rem;
@@ -57,9 +88,18 @@ p {
   }
 }
 
+// Standardized section padding
+section {
+  padding: 5rem 0;
+  
+  @media (max-width: 767px) {
+    padding: 3rem 0;
+  }
+}
+
 // Custom Button Styles
 .btn {
-  transition: all 0.3s ease;
+  @include transition;
   
   &-custom-primary {
     background-color: $primary-color;
@@ -97,39 +137,19 @@ p {
   }
 }
 
-// ------------------------------------------
-// NAVBAR STYLES
-// ------------------------------------------
-// Navbar Toggle Visibility
-.navbar-toggle {
-  .icon-bar {
-    background-color: $dark-color; // Ensure high contrast
-    width: 22px;
-    height: 2px;
-    border-radius: 1px;
-  }
+// Card hover effect used in multiple places
+%card-hover {
+  @include transition(transform);
   
   &:hover {
-    .icon-bar {
-      background-color: $primary-color; // Optional: change color on hover
-    }
+    transform: translateY(-10px);
   }
 }
 
-// Responsive adjustments for navbar toggle
-@media (max-width: 767px) {
-  .navbar-custom .navbar-toggle {
-    margin-top: 15px;
-    margin-right: 15px;
-    border: none;
-    background-color: transparent;
-    
-    &:focus, &:active {
-      outline: none;
-      background-color: rgba($primary-color, 0.1);
-    }
-  }
-}
+// ------------------------------------------
+// NAVBAR STYLES - CONSOLIDATED
+// ------------------------------------------
+
 .navbar-wrapper {
   background-color: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -138,26 +158,29 @@ p {
 }
 
 .navbar-custom {
-  background-color: transparent;
+  background-color: white;
   border: none;
   margin-bottom: 0;
+  @include transition(box-shadow);
+  
+  &.navbar-fixed-top {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }  
   
   .navbar-brand {
     height: auto;
-    padding: 20px 15px; /* Adjusted padding to align vertically */
+    padding: 20px 15px;
     
     .brand-text {
       color: $dark-color;
       font-weight: 700;
       font-size: 1.8rem;
       letter-spacing: -0.5px;
-      line-height: 1; /* Added to improve vertical alignment */
+      line-height: 1;
     }
     
-    &:hover {
-      .brand-text {
-        color: $primary-color;
-      }
+    &:hover .brand-text {
+      color: $primary-color;
     }
   }
   
@@ -169,19 +192,19 @@ p {
         color: $dark-color;
         font-weight: 500;
         padding: 20px 15px;
-        transition: all 0.3s ease;
+        @include transition;
         position: relative;
         
         &:after {
           content: "";
           position: absolute;
-          bottom: 10px; /* Moved higher to be closer to text */
+          bottom: 10px;
           left: 15px;
           right: 15px;
           height: 3px;
           background-color: $primary-color;
           transform: scaleX(0);
-          transition: transform 0.3s ease;
+          @include transition(transform);
         }
         
         &:hover, &:focus {
@@ -212,7 +235,7 @@ p {
   }
   
   .auth-buttons {
-    margin: 15px 0; /* Adjusted to align vertically with other elements */
+    margin: 15px 0;
     display: flex;
     align-items: center;
     
@@ -221,21 +244,44 @@ p {
       padding: 8px 16px;
       border-radius: 4px;
       font-weight: 500;
-      transition: all 0.3s ease;
+    }
+  }
+  
+  // Navbar toggle icon styles
+  .navbar-toggle {
+    .icon-bar {
+      background-color: $dark-color;
+      width: 22px;
+      height: 2px;
+      border-radius: 1px;
+    }
+    
+    &:hover .icon-bar {
+      background-color: $primary-color;
     }
   }
 }
 
-// Responsive adjustments for navbar
+// Responsive adjustments for navbar toggle
 @media (max-width: 767px) {
   .navbar-custom {
-    .navbar-nav {
-      > li > a {
-        padding: 12px 15px;
-        
-        &:after {
-          display: none;
-        }
+    .navbar-toggle {
+      margin-top: 15px;
+      margin-right: 15px;
+      border: none;
+      background-color: transparent;
+      
+      &:focus, &:active {
+        outline: none;
+        background-color: rgba($primary-color, 0.1);
+      }
+    }
+    
+    .navbar-nav > li > a {
+      padding: 12px 15px;
+      
+      &:after {
+        display: none;
       }
     }
     
@@ -257,67 +303,82 @@ p {
 // LANDING PAGE STYLES
 // ------------------------------------------
 
-.devmatch-landing {
-  section {
-    padding: 5rem 0;
-  }
-}
-
 // Hero Section
 .hero {
   background: linear-gradient(135deg, $primary-color, darken($primary-color, 15%));
   color: white;
   padding: 6rem 0;
   
+  @media (max-width: 767px) {
+    padding: 4rem 0;
+  }
+  
   h1 {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
+    
+    @media (max-width: 991px) {
+      font-size: 3rem;
+    }
+    
+    @media (max-width: 767px) {
+      font-size: 2.5rem;
+    }
   }
   
   .lead {
     font-size: 1.5rem;
     margin-bottom: 2rem;
     opacity: 0.9;
+    
+    @media (max-width: 767px) {
+      font-size: 1.2rem;
+    }
   }
   
   .hero-image {
     text-align: center;
+    
+    @media (max-width: 767px) {
+      margin-top: 2rem;
+    }
     
     img {
       max-width: 100%;
       height: auto;
     }
   }
+}
+
+// CTA Buttons - Reusable style for multiple sections
+.cta-buttons {
+  .btn {
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+  }
   
-  .cta-buttons {
-    .btn {
-      margin-right: 1rem;
-      margin-bottom: 1rem;
-      padding: 10px 25px;
-      border-radius: 30px;
-      font-weight: 600;
-    }
+  .btn-primary {
+    background-color: $accent-color;
+    border-color: $accent-color;
+    color: $dark-color;
     
-    .btn-primary {
-      background-color: $accent-color;
-      border-color: $accent-color;
-      color: $dark-color;
-      
-      &:hover, &:focus {
-        background-color: darken($accent-color, 5%);
-        border-color: darken($accent-color, 5%);
-      }
+    &:hover, &:focus {
+      background-color: darken($accent-color, 5%);
+      border-color: darken($accent-color, 5%);
     }
+  }
+  
+  .btn-default {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid white;
+    color: white;
     
-    .btn-default {
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 2px solid white;
-      color: white;
-      
-      &:hover, &:focus {
-        background-color: white;
-        color: $primary-color;
-      }
+    &:hover, &:focus {
+      background-color: white;
+      color: $primary-color;
     }
   }
 }
@@ -327,32 +388,16 @@ p {
   background-color: $light-color;
   
   .feature-card {
+    @extend %card-hover;
     background-color: white;
     padding: 2.5rem;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     margin-bottom: 30px;
-    transition: transform 0.3s ease;
     height: 100%;
     
-    &:hover {
-      transform: translateY(-10px);
-    }
-    
     .feature-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background-color: rgba($primary-color, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      
-      i {
-        font-size: 28px;
-        color: $primary-color;
-      }
+      @include icon-circle(70px, rgba($primary-color, 0.1), 28px);
     }
     
     h3 {
@@ -379,14 +424,10 @@ p {
     margin-bottom: 2rem;
     
     .step-number {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
+      @include circle(60px);
+      @include flex-center;
       background-color: $primary-color;
       color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       margin: 0 auto 1.5rem;
       font-size: 1.5rem;
       font-weight: bold;
@@ -427,7 +468,7 @@ p {
       margin-bottom: 1.5rem;
       
       &:before {
-        content: "\201C"; /* Unicode for opening double quote */
+        content: "\201C";
         font-size: 3rem;
         line-height: 0;
         position: relative;
@@ -451,7 +492,7 @@ p {
   }
 }
 
-// Call To Action Section
+// Call To Action Section - Using shared gradient background
 .cta {
   background: linear-gradient(135deg, $primary-color, darken($primary-color, 15%));
   color: white;
@@ -467,54 +508,19 @@ p {
     margin-bottom: 2rem;
     opacity: 0.9;
   }
-  
-  .cta-buttons {
-    .btn {
-      margin: 0 0.5rem 1rem;
-      padding: 10px 25px;
-      border-radius: 30px;
-      font-weight: 600;
-    }
-    
-    .btn-primary {
-      background-color: $accent-color;
-      border-color: $accent-color;
-      color: $dark-color;
-      
-      &:hover, &:focus {
-        background-color: darken($accent-color, 5%);
-        border-color: darken($accent-color, 5%);
-      }
-    }
-    
-    .btn-default {
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 2px solid white;
-      color: white;
-      
-      &:hover, &:focus {
-        background-color: white;
-        color: $primary-color;
-      }
-    }
-  }
 }
 
 // ------------------------------------------
-// ABOUT PAGE STYLES
+// ABOUT PAGE STYLES - CONSOLIDATED
 // ------------------------------------------
 
-// About Page Styles - Text Size Improvements
+// Common about page styles
 .about-page {
-  section {
-    padding: 5rem 0;
-  }
-  
   h2 {
     position: relative;
     margin-bottom: 2rem;
     font-weight: 700;
-    font-size: 2.5rem; /* Increased from default */
+    font-size: 2.5rem;
     
     &:after {
       content: "";
@@ -532,27 +538,39 @@ p {
   }
   
   p {
-    font-size: 16px; /* Ensures all paragraph text is at least 16px */
+    font-size: 16px;
     line-height: 1.8;
   }
   
   .subtitle {
-    font-size: 1.4rem !important; /* Force this to be larger */
+    font-size: 1.4rem !important;
     line-height: 1.6;
     margin-bottom: 2rem;
   }
 }
 
-// About Hero Section
+// About Hero Section - Reusing gradient background
 .about-hero {
   background-color: $primary-color;
   color: white;
   padding: 6rem 0;
   
+  @media (max-width: 767px) {
+    padding: 4rem 0;
+  }
+  
   h1 {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
     font-weight: 700;
+    
+    @media (max-width: 991px) {
+      font-size: 3rem;
+    }
+    
+    @media (max-width: 767px) {
+      font-size: 2.5rem;
+    }
   }
   
   .lead {
@@ -595,33 +613,17 @@ p {
   }
   
   .mission-card {
+    @extend %card-hover;
     background-color: white;
     padding: 2.5rem 2rem;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     height: 100%;
     text-align: center;
-    transition: transform 0.3s ease;
     margin-bottom: 30px;
     
-    &:hover {
-      transform: translateY(-10px);
-    }
-    
     .mission-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background-color: rgba($primary-color, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      
-      i {
-        font-size: 28px;
-        color: $primary-color;
-      }
+      @include icon-circle(70px, rgba($primary-color, 0.1), 28px);
     }
     
     h3 {
@@ -639,12 +641,6 @@ p {
 
 // Team Section
 .our-team {
-  .subtitle {
-    font-size: 1.4rem !important;
-    opacity: 0.8;
-    margin-bottom: 2rem;
-  }
-  
   .team-member {
     h4 {
       margin-bottom: 0.5rem;
@@ -668,12 +664,6 @@ p {
 
 // Why Choose Us Section
 .why-choose-us {
-  .subtitle {
-    font-size: 1.4rem !important;
-    opacity: 0.8;
-    margin-bottom: 2rem;
-  }
-  
   .feature-item {
     .feature-content {
       h3 {
@@ -702,7 +692,7 @@ p {
   }
 }
 
-// Stats Section
+// Stats Section - Same gradient as CTA
 .stats-section {
   background: linear-gradient(135deg, $primary-color, darken($primary-color, 15%));
   color: white;
@@ -726,8 +716,6 @@ p {
     }
   }
 }
-
-
 
 // ------------------------------------------
 // FOOTER STYLES
@@ -768,7 +756,7 @@ p {
       
       a {
         color: rgba(white, 0.7);
-        transition: color 0.2s ease;
+        @include transition(color, 0.2s);
         
         &:hover {
           color: white;
@@ -795,80 +783,18 @@ p {
     
     .social-link {
       display: inline-block;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
+      @include circle(36px);
       background-color: rgba(white, 0.1);
       color: white;
       text-align: center;
       line-height: 36px;
       margin-right: 10px;
-      transition: all 0.2s ease;
+      @include transition;
       
       &:hover {
         background-color: $primary-color;
         transform: translateY(-3px);
       }
-    }
-  }
-}
-
-// ------------------------------------------
-// RESPONSIVE UTILITIES
-// ------------------------------------------
-
-@media (max-width: 991px) {
-  .hero h1 {
-    font-size: 3rem;
-  }
-  
-  .about-hero h1 {
-    font-size: 3rem;
-  }
-}
-
-@media (max-width: 767px) {
-  section {
-    padding: 3rem 0;
-  }
-  
-  .hero {
-    padding: 4rem 0;
-    
-    h1 {
-      font-size: 2.5rem;
-    }
-    
-    .lead {
-      font-size: 1.2rem;
-    }
-    
-    .hero-image {
-      margin-top: 2rem;
-    }
-  }
-  
-  .about-hero {
-    padding: 4rem 0;
-    
-    h1 {
-      font-size: 2.5rem;
-    }
-  }
-  
-  .section-title {
-    font-size: 2rem;
-  }
-  
-  .feature-item {
-    flex-direction: column;
-    
-    .feature-icon {
-      margin: 0 auto 1.5rem;
-    }
-    
-    .feature-content {
-      text-align: center;
     }
   }
 }
