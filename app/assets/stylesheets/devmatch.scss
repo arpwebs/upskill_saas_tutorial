@@ -798,3 +798,168 @@ section {
     }
   }
 }
+
+// ------------------------------------------
+// CONTACT PAGE STYLES
+// ------------------------------------------
+
+// Contact Hero Section
+.contact-hero {
+  background-color: $primary-color;
+  color: white;
+  padding: 6rem 0;
+  
+  h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .lead {
+    font-size: 1.6rem;
+    opacity: 0.9;
+    font-weight: 300;
+  }
+}
+
+// Contact Form Section
+.contact-form-section {
+  padding: 5rem 0;
+  background-color: $light-color;
+  
+  .form-container {
+    background-color: white;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    
+    label {
+      font-weight: 600;
+      color: $dark-color;
+      margin-bottom: 0.5rem;
+    }
+    
+    .form-control {
+      height: auto;
+      padding: 12px 15px;
+      font-size: 1rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+      margin-bottom: 1.5rem;
+      
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+      }
+    }
+    
+    textarea.form-control {
+      min-height: 150px;
+    }
+    
+    .btn {
+      padding: 12px 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      background-color: $primary-color;
+      border-color: $primary-color;
+      
+      &:hover {
+        background-color: darken($primary-color, 7%);
+        border-color: darken($primary-color, 7%);
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// Contact Info Section
+.contact-info {
+  padding: 5rem 0;
+  
+  .contact-method {
+    text-align: center;
+    margin-bottom: 3rem;
+    
+    .contact-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: rgba($primary-color, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      
+      i {
+        font-size: 32px;
+        color: $primary-color;
+      }
+    }
+    
+    h3 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: $dark-color;
+    }
+    
+    p {
+      color: $dark-color;
+      opacity: 0.8;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+
+// Form field size improvements - much larger
+.contact-form-section {
+  .form-container {
+    label {
+      font-weight: 600;
+      color: $dark-color;
+      margin-bottom: 0.8rem;
+      font-size: 1.4rem; // Significantly increased label size
+    }
+    
+    .form-control {
+      height: auto;
+      padding: 15px 18px; // Increased padding for larger fields
+      font-size: 1.4rem; // Significantly increased from 1.1rem to 1.4rem
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+      margin-bottom: 2rem; // Increased margin for better spacing
+      
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+      }
+    }
+    
+    // Increase placeholder text size and make it more visible
+    ::placeholder {
+      font-size: 1.4rem;
+      opacity: 0.7;
+    }
+    
+    textarea.form-control {
+      min-height: 180px; // Slightly taller textarea
+      font-size: 1.4rem; // Same larger font size
+    }
+    
+    .btn {
+      padding: 15px 35px; // Larger button padding
+      font-weight: 600;
+      font-size: 1.4rem; // Larger button text
+      transition: all 0.3s ease;
+      background-color: $primary-color;
+      border-color: $primary-color;
+      
+      &:hover {
+        background-color: darken($primary-color, 7%);
+        border-color: darken($primary-color, 7%);
+        transform: translateY(-2px);
+      }
+    }
+  }
+}

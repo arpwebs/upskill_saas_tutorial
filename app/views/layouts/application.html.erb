@@ -55,17 +55,19 @@
 </div>
 
     <!-- Flash Messages -->
-    <% if notice %>
-      <div class="alert alert-success alert-dismissible" role="alert">
+    <% flash.each do |type, message| %>
+      <% alert_class = case type
+                      when 'success' then 'alert-success'
+                      when 'notice' then 'alert-success'
+                      when 'danger' then 'alert-danger' 
+                      when 'alert' then 'alert-danger'
+                      when 'warning' then 'alert-warning'
+                      when 'info' then 'alert-info'
+                      else 'alert-info'
+                      end %>
+      <div class="alert <%= alert_class %> alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <%= notice %>
-      </div>
-    <% end %>
-    
-    <% if alert %>
-      <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <%= alert %>
+        <%= message %>
       </div>
     <% end %>
 
