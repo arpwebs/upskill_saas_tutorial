@@ -93,6 +93,7 @@ GEM
     ffi (1.17.1-x86_64-linux-gnu)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hirb (0.7.3)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.1.0)
@@ -242,6 +243,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (~> 3.4, >= 3.4.1)
   byebug
+  hirb (= 0.7.3)
   importmap-rails
   jbuilder (~> 2.5)
   jquery-rails
