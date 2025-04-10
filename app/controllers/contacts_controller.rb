@@ -10,6 +10,11 @@ class ContactsController < ApplicationController
     
     # Try to save the Contact to the database
     if @contact.save
+      # Send email
+      name = params[:contact][:name]
+      email = params[:contact][:email]
+      body = params[:contact][:comments]
+      ContactMailer.contact_email(name, email, body).deliver
       # Flash message for success
       flash[:success] = "Message sent successfully! We'll get back to you soon."
       # Create a fresh contact object for the form
