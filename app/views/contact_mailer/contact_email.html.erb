@@ -1,9 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
+  <head>
+    <style>
+      body { font-family: Arial, sans-serif; color: #333; }
+      .container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        background: #fafafa;
+      }
+      h2 { color: #444; }
+      .label { font-weight: bold; }
+      .footer { font-size: 12px; color: #777; margin-top: 20px; }
+    </style>
+  </head>
   <body>
-    <p>You have received a message from the site's contact form, from
-    <%= "#{ @name }, #{ @email }." %></p>
-    <p><%= @body %></p>
+    <div class="container">
+      <h2>New Contact Us Submission!</h2>
+      <p><span class="label">Name:</span> <%= @name %></p>
+      <p><span class="label">Email:</span> <%= @email %></p>
+      <p><span class="label">Message:</span><br><%= simple_format(@body) %></p>
+
+      <div class="footer">
+        This message was sent via your website's contact form.
+      </div>
+    </div>
   </body>
 </html>
