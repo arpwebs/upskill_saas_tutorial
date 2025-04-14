@@ -22,6 +22,9 @@ gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 # Use Hirb gem for better console data presentation
 gem 'hirb', '0.7.3'
 
+# Use Devise for user authentication
+gem 'devise', '~> 4.9', '>= 4.9.3'
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end
