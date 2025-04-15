@@ -45,9 +45,16 @@
           </li>
           
         </ul>
+        <!-- Navbar Auth Buttons -->
         <div class="nav navbar-nav navbar-right auth-buttons">
-          <%= link_to "Log In", new_user_session_path, class: "btn btn-outline" %>
-          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-custom-primary" %>
+          <% if user_signed_in? %>
+            <!-- User is logged in, show logout button -->
+            <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-outline" %>
+          <% else %>
+            <!-- User is not logged in, show login and signup buttons -->
+            <%= link_to "Sign In", new_user_session_path, class: "btn btn-outline" %>
+            <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-custom-primary" %>
+          <% end %>
         </div>
       </div>
     </div>
