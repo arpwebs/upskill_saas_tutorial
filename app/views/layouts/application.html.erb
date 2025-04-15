@@ -46,8 +46,8 @@
           
         </ul>
         <div class="nav navbar-nav navbar-right auth-buttons">
-          <a href="#" class="btn btn-outline">Sign In</a>
-          <a href="#" class="btn btn-custom-primary">Sign Up</a>
+          <%= link_to "Log In", new_user_session_path, class: "btn btn-outline" %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-custom-primary" %>
         </div>
       </div>
     </div>
