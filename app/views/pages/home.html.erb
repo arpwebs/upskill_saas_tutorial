@@ -9,8 +9,8 @@
             <h1>Connect with top tech talent</h1>
             <p class="lead">DevMatch helps companies find qualified developers and engineers who are ready for their next opportunity.</p>
             <div class="cta-buttons">
-              <a href="#" class="btn btn-primary btn-lg">Post a Job</a>
-              <a href="#" class="btn btn-default btn-lg">Find a Job</a>
+              <%= link_to "Sign up with Basic", new_user_registration_path(plan: @basic_plan.id), class: 'btn btn-primary btn-lg' %>
+              <%= link_to "Sign up with Pro", new_user_registration_path(plan: @pro_plan.id), class: 'btn btn-default btn-lg' %>
             </div>
           </div>
         </div>
