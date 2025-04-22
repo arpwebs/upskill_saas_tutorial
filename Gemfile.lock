@@ -87,6 +87,8 @@ GEM
     connection_pool (2.5.0)
     crass (1.0.6)
     date (3.4.1)
+    dockerfile-rails (1.7.9)
+      rails (>= 3.0.0)
     drb (2.2.1)
     erubi (1.13.1)
     execjs (2.10.0)
@@ -243,6 +245,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (~> 3.4, >= 3.4.1)
   byebug
+  dockerfile-rails (>= 1.7)
   hirb (= 0.7.3)
   importmap-rails
   jbuilder (~> 2.5)
@@ -262,4 +265,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.6.6
+   2.4.10
