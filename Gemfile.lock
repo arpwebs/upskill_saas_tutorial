@@ -98,6 +98,8 @@ GEM
     erubi (1.13.1)
     execjs (2.10.0)
     ffi (1.17.1-x86_64-linux-gnu)
+    figaro (1.2.0)
+      thor (>= 0.14.0, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hirb (0.7.3)
@@ -258,6 +260,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.4, >= 3.4.1)
   byebug
   devise (~> 4.9, >= 4.9.3)
+  figaro
   hirb (= 0.7.3)
   importmap-rails
   jbuilder (~> 2.5)
