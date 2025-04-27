@@ -16,6 +16,9 @@ gem 'sassc-rails'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 
+# Use Stripe for payment processing
+gem 'stripe'
+
 # Use Twitter Bootstrap library for front-end UI and layout
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 
